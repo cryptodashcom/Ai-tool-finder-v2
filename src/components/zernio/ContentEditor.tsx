@@ -9,9 +9,16 @@ import { ZernioMediaPanel } from '@/components/zernio';
 interface ContentEditorProps {
   initialContent?: string;
   onChange?: (html: string) => void;
+  onImageGenerated?: (urls: string[]) => void;
+  onVideoGenerated?: (urls: string[]) => void;
 }
 
-export function ContentEditor({ initialContent = '', onChange }: ContentEditorProps) {
+export function ContentEditor({
+  initialContent = '',
+  onChange,
+  onImageGenerated,
+  onVideoGenerated,
+}: ContentEditorProps) {
   const editor = useEditor({
     extensions: [StarterKit, Image, VideoNode],
     content: initialContent,
@@ -22,10 +29,12 @@ export function ContentEditor({ initialContent = '', onChange }: ContentEditorPr
 
   function handleImageGenerated(urls: string[]) {
     urls.forEach((src) => editor?.chain().focus().setImage({ src }).run());
+    onImageGenerated?.(urls);
   }
 
   function handleVideoGenerated(urls: string[]) {
     urls.forEach((src) => editor?.chain().focus().insertVideo({ src }).run());
+    onVideoGenerated?.(urls);
   }
 
   return (

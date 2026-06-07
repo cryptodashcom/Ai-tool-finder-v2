@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { generateImage } from '@/lib/zernio/image-service';
 import { uploadMediaUrls } from '@/lib/zernio/cloudinary-upload';
+import { requireEnv } from '@/lib/env';
 import type { ImageGenerationParams } from '@/lib/zernio/types';
 
 export async function POST(req: NextRequest) {
@@ -10,9 +11,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const apiToken = process.env.REPLICATE_API_TOKEN;
-  if (!apiToken) {
-    return NextResponse.json({ error: 'Replicate API token not configured' }, { status: 500 });
+  let apiToken: string;
+  try {
+    apiToken = requireEnv('REPLICATE_API_TOKEN');
+  } catch (e) {
+    return NextResponse.json({ error: (e as Error).message }, { status: 500 });
   }
 
   const body = (await req.json()) as ImageGenerationParams;
