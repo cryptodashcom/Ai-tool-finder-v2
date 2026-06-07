@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [1.9.0] - 2026-06-07
+
+### Added
+- **Zernio AI Media Services**: AI image and video generation integrated into the content workflow
+  - `ZernioMediaPanel` component — tabbed UI for generating images and videos from the content editor
+  - `ImageGenerator` — generates images via Replicate FLUX Schnell with style presets (photorealistic, illustration, digital art, cinematic) and aspect ratio control
+  - `VideoGenerator` — generates videos via Replicate Wan 2.1 with aspect ratio, duration slider, and live progress polling
+  - `/api/zernio/generate-image` — authenticated POST endpoint; uploads result to Cloudinary automatically
+  - `/api/zernio/generate-video` — authenticated POST endpoint; returns a prediction ID for async polling
+  - `/api/zernio/media-status/[jobId]` — polls Replicate prediction status and uploads completed video to Cloudinary
+  - All routes protected by Clerk authentication
+  - Added `replicate` dependency (v0.34.4)
+
 ## [1.8.0] - 2026-03-02
 
 ### Fixed
