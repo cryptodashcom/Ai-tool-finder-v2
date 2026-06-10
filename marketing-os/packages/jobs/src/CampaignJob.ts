@@ -24,7 +24,7 @@ import {
 import type { ChannelAdapter } from '@marketing-os/channels';
 
 function buildAdapters(): Map<Platform, ChannelAdapter> {
-  const adapters: ChannelAdapter[] = [
+  const adapters = [
     new TwitterAdapter(),
     new LinkedInAdapter(),
     new FacebookAdapter(),

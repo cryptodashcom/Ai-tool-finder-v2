@@ -27,7 +27,9 @@ export class JobRunner {
       try {
         const ctx = await runCampaignJob(job.brief);
         console.log(`[JobRunner] Job ${job.id} finished with status: ${ctx.status}`);
-        if (ctx.errors.length > 0) console.error(`[JobRunner] Errors:`, ctx.errors);
+        if (ctx.errors.length > 0) {
+          console.error(`[JobRunner] Errors:`, ctx.errors);
+        }
       } catch (err) {
         console.error(`[JobRunner] Job ${job.id} threw:`, err);
       }

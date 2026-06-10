@@ -18,11 +18,12 @@ export abstract class BaseChannelAdapter implements ChannelAdapter {
 
   abstract publish(payload: PublishPayload): Promise<PublishResult>;
 
-  async validate(_payload: PublishPayload): Promise<{ valid: boolean; errors: string[] }> {
+  async validate(payload: PublishPayload): Promise<{ valid: boolean; errors: string[] }> {
     return { valid: true, errors: [] };
   }
 
-  protected stubResult(platform: Platform, postId: string): PublishResult {
+  protected stubResult(platform: Platform): PublishResult {
+    const postId = crypto.randomUUID();
     return {
       platform,
       success: true,

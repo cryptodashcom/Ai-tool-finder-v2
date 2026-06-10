@@ -15,8 +15,7 @@
     "dev": "tsc --watch"
   },
   "dependencies": {
-    "@marketing-os/core": "workspace:*",
-    "nanoid": "^5.0.7"
+    "@marketing-os/core": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
