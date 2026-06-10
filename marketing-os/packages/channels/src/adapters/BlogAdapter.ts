@@ -6,7 +6,7 @@ export class BlogAdapter extends BaseChannelAdapter {
   readonly platform = 'blog' as const;
 
   async publish(payload: PublishPayload): Promise<PublishResult> {
-    // STUB: real impl uses WordPress REST API or headless CMS API
+    // STUB: real impl would use WordPress REST API or CMS API
     console.log(`[Blog] Publishing post for ${payload.brief.brand}: ${payload.copy.headline ?? 'Untitled'}`);
     return this.stubResult('blog');
   }
