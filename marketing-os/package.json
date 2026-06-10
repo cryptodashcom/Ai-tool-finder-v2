@@ -1,0 +1,11 @@
+{
+  "name": "marketing-os",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "pnpm -r build",
+    "dev": "pnpm --filter @marketing-os/cli run dev",
+    "db:migrate": "pnpm --filter @marketing-os/core run db:migrate",
+    "run:campaign": "pnpm --filter @marketing-os/cli run campaign"
+  }
+}
