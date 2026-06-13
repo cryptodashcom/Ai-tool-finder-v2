@@ -1,0 +1,22 @@
+{
+  "name": "@marketing-os/cli",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "marketing-os": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "campaign": "tsx src/run-campaign.ts"
+  },
+  "dependencies": {
+    "@marketing-os/core": "workspace:*",
+    "@marketing-os/jobs": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.5.3"
+  }
+}
