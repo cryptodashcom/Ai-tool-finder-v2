@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid';
 import type { MediaRequest, MediaAsset } from '@marketing-os/core';
 import type { GenerationProvider } from './types.js';
 
@@ -19,7 +18,7 @@ export class MediaGenerator {
   private stubAsset(request: MediaRequest): MediaAsset {
     const { width, height } = request.dimensions;
     return {
-      id: nanoid(),
+      id: crypto.randomUUID(),
       type: request.type,
       url: `https://placehold.co/${width}x${height}?text=${encodeURIComponent(request.platform)}`,
       platform: request.platform,

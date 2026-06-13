@@ -16,7 +16,9 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.37.0",
-    "@marketing-os/core": "workspace:*"
+    "@marketing-os/channels": "workspace:*",
+    "@marketing-os/core": "workspace:*",
+    "drizzle-orm": "^0.39.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

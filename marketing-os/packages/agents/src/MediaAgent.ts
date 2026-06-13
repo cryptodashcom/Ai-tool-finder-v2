@@ -1,7 +1,7 @@
 import type { MediaRequest, MediaAsset, PipelineContext, Platform } from '@marketing-os/core';
 import type { Db } from '@marketing-os/core';
 import type { StageHandler } from '@marketing-os/core';
-import { nanoid } from 'nanoid';
+
 import { BaseAgent } from './BaseAgent.js';
 
 const PLATFORM_DIMENSIONS: Record<Platform, { width: number; height: number }> = {
@@ -73,7 +73,7 @@ POSITIONING: ${ctx.strategy?.positioning ?? ''}`,
 
     // Stub: generate placeholder asset URLs (real implementation would call DALL-E / Stable Diffusion)
     ctx.mediaAssets = ctx.mediaRequests.map((req) => ({
-      id: nanoid(),
+      id: crypto.randomUUID(),
       type: req.type,
       url: `https://placehold.co/${req.dimensions.width}x${req.dimensions.height}?text=${encodeURIComponent(req.platform)}`,
       platform: req.platform,

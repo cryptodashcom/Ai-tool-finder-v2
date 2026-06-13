@@ -1,7 +1,7 @@
 import type { PlatformCopy, PipelineContext, Platform } from '@marketing-os/core';
 import type { Db } from '@marketing-os/core';
 import type { StageHandler } from '@marketing-os/core';
-import { nanoid } from 'nanoid';
+
 import { campaignPosts } from '@marketing-os/core';
 import { BaseAgent } from './BaseAgent.js';
 
@@ -67,7 +67,7 @@ Write copy for these platforms: ${ctx.brief.platforms.join(', ')}`,
 
     for (const copy of ctx.copies) {
       await db.insert(campaignPosts).values({
-        id: nanoid(),
+        id: crypto.randomUUID(),
         campaignId: ctx.campaignId,
         platform: copy.platform,
         copy: copy as unknown as Record<string, unknown>,

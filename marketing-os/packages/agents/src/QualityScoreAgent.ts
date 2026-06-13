@@ -1,7 +1,7 @@
 import type { QualityScore, PipelineContext, Platform } from '@marketing-os/core';
 import type { Db } from '@marketing-os/core';
 import type { StageHandler } from '@marketing-os/core';
-import { eq } from 'drizzle-orm';
+import { eq, and } from 'drizzle-orm';
 import { campaignPosts } from '@marketing-os/core';
 import { BaseAgent } from './BaseAgent.js';
 
@@ -89,7 +89,12 @@ COPIES: ${JSON.stringify(ctx.copies, null, 2)}`,
           status: score.approved ? 'approved' : 'draft',
           updatedAt: new Date(),
         })
-        .where(eq(campaignPosts.platform, score.platform));
+        .where(
+          and(
+            eq(campaignPosts.campaignId, ctx.campaignId),
+            eq(campaignPosts.platform, score.platform),
+          ),
+        );
     }
   }
 }
